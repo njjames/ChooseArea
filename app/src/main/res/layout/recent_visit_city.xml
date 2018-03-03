@@ -3,21 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="最近访问的城市"
         android:textColor="#000"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 
     <GridView
         android:id="@+id/recent_visit_city_gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="3">
+        android:numColumns="3"
+        android:horizontalSpacing="15dp"
+        android:layout_margin="15dp">
 
     </GridView>
 </LinearLayout>
