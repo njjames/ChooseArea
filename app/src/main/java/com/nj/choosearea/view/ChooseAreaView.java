@@ -87,6 +87,9 @@ public class ChooseAreaView extends View {
                         mTextView.setVisibility(VISIBLE);
                         mTextView.setText(text);
                     }
+                    if (mOnSlidingListener != null) {
+                        mOnSlidingListener.sliding(text);
+                    }
                     //重画（感觉不用重画啊，这里重画就是这一列的文字，不知道为什么要重画）
 //                    invalidate();
                 }
@@ -102,6 +105,9 @@ public class ChooseAreaView extends View {
                         if (mTextView != null) {
                             mTextView.setVisibility(VISIBLE);
                             mTextView.setText(text);
+                        }
+                        if (mOnSlidingListener != null) {
+                            mOnSlidingListener.sliding(text);
                         }
                         //                    invalidate();
                     }
@@ -119,7 +125,7 @@ public class ChooseAreaView extends View {
         return true;
     }
 
-    //定义一个回调接口（感觉这里没有必须设置这个回调接口，或者回调接口和设置TextView选择一个）
+    //定义一个回调接口（感觉这里没有必须设置这个回调接口，或者回调接口和设置TextView选择一个，但是如果需要把数据传出去，必须添加一个回调）
     public interface OnSlidingListener {
         //这个回调方法就是把点击位置的文件传出去
         public void sliding(String text);

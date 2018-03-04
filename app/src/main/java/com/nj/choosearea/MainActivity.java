@@ -17,6 +17,7 @@ import com.nj.choosearea.view.ChooseAreaView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private List<String> mRecentVisitCityNameList = new ArrayList<>();
@@ -33,21 +34,37 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textview);
         chooseAreaView.setTextView(textView);
         quertRecentVisitCity();
-        ListView listView = findViewById(R.id.listview);
+        final ListView listView = findViewById(R.id.listview);
         ChooseAreaAdapter chooseAreaAdapter = new ChooseAreaAdapter(this, mRecentVisitCityNameList, mHotCityList, mCityList);
         listView.setAdapter(chooseAreaAdapter);
+        chooseAreaView.setOnSlidingListener(new ChooseAreaView.OnSlidingListener() {
+            @Override
+            public void sliding(String text) {
+                //获取到字母第一次出现的位置，并将显示位置设置为这里
+                int firstPosition = getTheFirstLetterPosition(text);
+                if (firstPosition >= 0) {
+                    listView.setSelection(firstPosition + 4);
+                }
+            }
+        });
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            City city = new City();
-            city.setName("城市" + i);
-            city.setPinyin("chengshi" + i);
-            mCityList.add(city);
-            if (i % 2 == 0) {
-                mHotCityList.add(city.getName());
+        for (int i = 0; i < 26; i++) {
+            Random random = new Random();
+            int count = random.nextInt(10) + 1;
+            char c = (char) ('A' + i);
+            for (int i1 = 0; i1 < count; i1++) {
+                City city = new City();
+                city.setName(c + "城市" + i1);
+                city.setPinyin(c + "chengshi" + i1);
+                mCityList.add(city);
+                if (i1 == 0 && i <= 4) {
+                    mHotCityList.add(city.getName());
+                }
+                insertRecentVisitCity(city.getName());
             }
-            insertRecentVisitCity(city.getName());
+
         }
     }
 
@@ -79,5 +96,14 @@ public class MainActivity extends AppCompatActivity {
         values.put("date", System.currentTimeMillis());
         database.insert("recentcity", null, values);
         database.close();
+    }
+
+    public int getTheFirstLetterPosition(String text) {
+        for (int i = 0; i < mCityList.size(); i++) {
+            if (mCityList.get(i).getPinyin().startsWith(text)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

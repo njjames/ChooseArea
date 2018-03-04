@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nj.choosearea.R;
 import com.nj.choosearea.model.City;
@@ -99,15 +101,22 @@ public class ChooseAreaAdapter extends BaseAdapter {
                     convertView = View.inflate(mContext, R.layout.city_list_item, null);
                     TextView cityFirstLetter = convertView.findViewById(R.id.city_firt_letter);
                     TextView cityName = convertView.findViewById(R.id.city_name);
+                    LinearLayout llMain = convertView.findViewById(R.id.llmain);
                     viewHolder.cityFirstLetter = cityFirstLetter;
                     viewHolder.cityName = cityName;
+                    viewHolder.llMain = llMain;
                     convertView.setTag(viewHolder);
                 }else {
                     viewHolder = (ViewHolder) convertView.getTag();
                 }
-                City item = getItem(i);
+                final City item = getItem(i);
                 viewHolder.cityName.setText(item.getName());
-                Log.d(TAG, "getView: " + i);
+                viewHolder.llMain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(mContext, item.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 //如果不是List的第一条，就先查出上一条的拼音
                 if (i == 4) {
                     viewHolder.cityFirstLetter.setText(getItem(i).getPinyin().substring(0, 1));
@@ -144,5 +153,6 @@ public class ChooseAreaAdapter extends BaseAdapter {
     public static class ViewHolder {
         public TextView cityFirstLetter;
         public TextView cityName;
+        public LinearLayout llMain;
     }
 }
