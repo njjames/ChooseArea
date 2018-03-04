@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:numColumns="3"
         android:horizontalSpacing="15dp"
+        android:verticalSpacing="10dp"
         android:layout_margin="15dp">
 
     </com.nj.choosearea.view.MyGridView>

@@ -18,8 +18,8 @@ import android.widget.TextView;
 public class ChooseAreaView extends View {
     private static final String TAG = "ChooseAreaView";
     private String[] letter = new String[]{"定位", "最近", "热门", "全部", "A", "B", "C", "D",
-            "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q",
-            "R", "S", "T", "W", "X", "Y", "Z"};
+            "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+            "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     private boolean isShowBG = false;
     private Paint mPaint;
     private OnSlidingListener mOnSlidingListener;

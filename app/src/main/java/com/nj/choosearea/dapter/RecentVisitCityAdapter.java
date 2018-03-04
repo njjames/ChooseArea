@@ -5,7 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nj.choosearea.MainActivity;
 import com.nj.choosearea.R;
 
 import java.util.ArrayList;
@@ -45,7 +47,16 @@ public class RecentVisitCityAdapter extends BaseAdapter {
             convertView= View.inflate(mContext, R.layout.recent_visitorhot_city_item, null);
         }
         TextView recentVisitCityName = convertView.findViewById(R.id.recent_visit_city_name);
-        recentVisitCityName.setText(mRecentVisitCityNameList.get(i));
+        final String cityName = mRecentVisitCityNameList.get(i);
+        recentVisitCityName.setText(cityName);
+        recentVisitCityName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, cityName, Toast.LENGTH_SHORT).show();
+                MainActivity mainActivity = (MainActivity) mContext;
+                mainActivity.insertRecentVisitCity(cityName);
+            }
+        });
         return convertView;
     }
 }

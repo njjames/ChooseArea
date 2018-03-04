@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nj.choosearea.MainActivity;
 import com.nj.choosearea.R;
 import com.nj.choosearea.model.City;
 import com.nj.choosearea.view.MyGridView;
@@ -115,6 +116,8 @@ public class ChooseAreaAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(mContext, item.getName(), Toast.LENGTH_SHORT).show();
+                        MainActivity mainActivity = (MainActivity) mContext;
+                        mainActivity.insertRecentVisitCity(item.getName());
                     }
                 });
                 //如果不是List的第一条，就先查出上一条的拼音
