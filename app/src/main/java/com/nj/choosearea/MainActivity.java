@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             String searchCityName = mSearchCityList.get(i);
                             Toast.makeText(MainActivity.this, searchCityName, Toast.LENGTH_SHORT).show();
+                            insertRecentVisitCity(searchCityName);
                         }
                     });
                 }
