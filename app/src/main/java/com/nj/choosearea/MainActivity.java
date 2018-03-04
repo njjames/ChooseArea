@@ -21,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<String> mRecentVisitCityNameList = new ArrayList<>();
     private List<City> mCityList = new ArrayList<>();
+    private List<String> mHotCityList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         chooseAreaView.setTextView(textView);
         quertRecentVisitCity();
         ListView listView = findViewById(R.id.listview);
-        ChooseAreaAdapter chooseAreaAdapter = new ChooseAreaAdapter(this, mRecentVisitCityNameList, mCityList);
+        ChooseAreaAdapter chooseAreaAdapter = new ChooseAreaAdapter(this, mRecentVisitCityNameList, mHotCityList, mCityList);
         listView.setAdapter(chooseAreaAdapter);
     }
 
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
             city.setName("城市" + i);
             city.setPinyin("chengshi" + i);
             mCityList.add(city);
+            if (i % 2 == 0) {
+                mHotCityList.add(city.getName());
+            }
             insertRecentVisitCity(city.getName());
         }
     }

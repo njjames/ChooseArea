@@ -1,6 +1,5 @@
 package com.nj.choosearea.dapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,7 @@ public class RecentVisitCityAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {
-            convertView= View.inflate(mContext, R.layout.recent_visit_city_item, null);
+            convertView= View.inflate(mContext, R.layout.recent_visitorhot_city_item, null);
         }
         TextView recentVisitCityName = convertView.findViewById(R.id.recent_visit_city_name);
         recentVisitCityName.setText(mRecentVisitCityNameList.get(i));
